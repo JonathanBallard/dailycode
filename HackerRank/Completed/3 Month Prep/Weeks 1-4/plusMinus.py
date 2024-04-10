@@ -1,12 +1,19 @@
 
-# 
-# 
-# 
+#~ -----------------------------------------------------------------
+
+# Name:         Jonathan Ballard
+# Date:         4.9.24
+# Site:         HackerRank
+# Section:      3 Month Prep - Week 1
+# Problem:      Time Conversion
+
+#~ -----------------------------------------------------------------
+
+#^ Description
 # Receive Array (int arr[n]: an array of integers) of positive numbers, negative numbers, and zero. 
 # Print ratios of positives/negatives/zeros ( positives / number of elements )
 # Print the decimal value of each fraction on a new line with  places after the decimal.
-# 
-# 
+
 
 
 
