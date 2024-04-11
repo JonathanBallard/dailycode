@@ -55,9 +55,11 @@ def readLine(line):
 def combineWords(type, words):
 
     i = 0
+    words = list(words)
+    length = len(words)
 
     # remove spaces, and uppercase necessary characters
-    while i < len(words):
+    while i < length:
         if words[i] == ' ' and words[i + 1] and not i == 0:
             words[i + 1].upper()
             length = len(words)
@@ -87,9 +89,7 @@ def combineWords(type, words):
 
 def splitWords(type, words):
     
-    length = len(words)
     i = 0
-    
     words = list(words)
     length = len(words)
 
