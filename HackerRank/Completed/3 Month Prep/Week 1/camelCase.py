@@ -34,120 +34,123 @@
 
 import sys
 
+
 def readLine(line):
-    # sys.stdout.write('readLine -->  ' + line + '\n')
-    print('readLine -->  ' + line + '\n')
+    # sys.stdout.write('readLine ' + line + '\n')
     split = line.split(';')
     command = split[0]
     type = split[1]
     words = split[2]
+    
+    words = words.strip()
 
-    splitWord = words.split('\n')
-    words = splitWord[0]
-
+    # splitWord = words.split('\n')
+    # words = splitWord[0]
+    
+    
     if command == 'C':
         line = combineWords(type, words)
     elif command == 'S':
         line = splitWords(type, words)
-        return line
+    return line
 
 
 def combineWords(type, words):
 
     i = 0
-    words = list(words)
     length = len(words)
-
-    # remove spaces, and uppercase necessary characters
-    while i < length:
-        if words[i] == ' ' and words[i + 1] and not i == 0:
-            words[i + 1].upper()
+    
+    while(i < length):
+        if(words[i] == ' ' and i + 1 <= length):
+            split = words.split(' ')
+            
+            if(type == 'M'):
+                newSplit1 = split[1][1:]
+                words = split[0] + words[i+1].capitalize() + newSplit1
+                
+            elif(type == 'V'):
+                words = split[0] + split[1].capitalize()
+                j = 2
+                splLength = len(split)
+                
+                if(splLength > 2):
+                    while j < splLength:
+                        words += str(split[j].capitalize())
+                        j += 1
+                
+            elif(type == 'C'):
+                newSplit1 = split[1][1:]
+                words = split[0].capitalize() + words[i+1].capitalize() + newSplit1
+            
             length = len(words)
+        
+        i += 1
+        
+    # handle methods
+    if(type == 'M'):
+        spl = words.split('\n')
+        words = ''.join(spl[0]) + '()'
+        return str(words) + '\n'
 
+    
+    # handle vars
+    if(type == 'V'):
+        return str(words) + '\n'
+    
+    # handle classes
+    if(type == 'C'):
+        words = ''.join(words[0].capitalize()) + words[1:]
+        return str(words) + '\n'
+
+
+def splitWords(type, words):
+    
+    length = len(words)
+    i = 0
+    
+    # add spaces, and lowercase necessary characters
+    while i + 1 < length:
+        
+        wordStr = ''
+        
+        if words[i] == words[i].upper() and not i == 0:
+            char = words[i].lower()
             x = slice(i)
             words1 = words[x]
 
             x2 = (length * -1) + (i + 1)
             words2 = words[x2:]
-
-            words = words1 + words2
-
-        i += 1
-
-        # handle methods
-    if(type == 'M'):
-        return words + '()'
-
-        # handle vars
-    if(type == 'V'):
-        return words
-
-        # handle classes
-    if(type == 'C'):
-        words[0].upper()
-        return words
-
-def splitWords(type, words):
-    
-    i = 0
-    words = list(words)
-    length = len(words)
-
-    # add spaces, and lowercase necessary characters
-    while i < length:
-        
-        wordStr = ''
-        
-        if words[i] == words[i].upper() and not i == 0:
-            
-            words[i].lower()
-            
-            # backup = words[i]
-            x = slice(i)
-            words1 = words[x]
-
-            x2 = (length * -1) + (i)
-            words2 = words[x2:]
-            
-            # words[i] = backup
-            # print('words[i]')
-            # print(words[i])
-
-            # print('i')
-            # print(i)
             
             wordStr = ''.join(words1)
-            wordStr = wordStr + ''.join(' ')
-            wordStr = wordStr + ''.join(words[i])
-            wordStr = wordStr + ''.join(words2)
-            words = str(wordStr)
+            wordStr = wordStr + ''.join(' ') + ''.join(char)
+            words = wordStr + ''.join(words2)
             
-            print('end')
-        
         i += 1
-
-
+    
+    words = words.lower()
+    
     # handle methods
     if(type == 'M'):
         split = words.split('()')
-        return split[0]
-
+        return str(split[0]) + str(split[1]) + '\n'
+    
     # handle vars
     if(type == 'V'):
-        return words
-
+        return str(words) + '\n'
+    
     # handle classes
     if(type == 'C'):
-        return words
-
+        return str(words) + '\n'
 
 
 if __name__ == '__main__':
 	
-    lines = ['S;V;iPad\n', 'C;M;mouse pad\n', 'C;C;code swarm\n', 'S;C;OrangeHighlighter']
+    lines = ['S;V;iPad', 'C;M;mouse pad', 'C;C;code swarm', 'S;C;OrangeHighlighter', 'C;V;mobile phone', 'S;M;plasticCup()']
+    linesS = ['S;V;iPad', 'S;C;OrangeHighlighter', 'S;M;plasticCup()']
+    linesC = ['C;M;mouse pad', 'C;C;code swarm', 'C;V;mobile phone']
 
-    # lines = ['S;C;OrangeHighlighter']
-
+    lines2 = ['C;V;can of coke', 'S;M;sweatTea()', 'S;V;epsonPrinter', 'C;M;santa claus', 'C;C;mirror']
+    
     for line in lines:
         output = readLine(line)
         #sys.stdout.write(output)
