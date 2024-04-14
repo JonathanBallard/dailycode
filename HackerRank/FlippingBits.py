@@ -5,7 +5,7 @@
 # Date:         4.14.24
 # Site:         HackerRank
 # Section:      3 Month Prep - Week 2
-# Problem:      xxx
+# Problem:      Flipping Bits
 
 #~ -----------------------------------------------------------------
 
