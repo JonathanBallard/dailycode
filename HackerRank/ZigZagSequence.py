@@ -5,7 +5,7 @@
 # Date:         4.19.24
 # Site:         HackerRank
 # Section:      3 Month Prep - Week 3
-# Problem:      xxx
+# Problem:      Zig-Zag Sequence
 
 #~ -----------------------------------------------------------------
 

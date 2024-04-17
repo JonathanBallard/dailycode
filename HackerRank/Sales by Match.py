@@ -2,10 +2,10 @@
 #~ -----------------------------------------------------------------
 
 # Name:         Jonathan Ballard
-# Date:         4.19.24
+# Date:         4.17.24
 # Site:         HackerRank
 # Section:      3 Month Prep - Week 3
-# Problem:      xxx
+# Problem:      Sales By Match
 
 #~ -----------------------------------------------------------------
 

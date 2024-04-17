@@ -1,27 +1,64 @@
 
+#~ --------------------------------=--------------------------------
 
-type = 'M'
-words = 'mouse pad'
+#*                           *** SANDBOX ***
+#*                           Jonathan Ballard
 
-# splitWord = words.split('\n')
-# words = splitWord[0]
-i = 0
+#~ --------------------------------=--------------------------------
 
 
-# remove spaces, and uppercase necessary characters
-while i < len(words):
-    if words[i] == ' ' and words[i + 1] and not i == 0:
-        words[i + 1].upper()
-        length = len(words)
+#!/bin/python3
 
-        x = slice(i)
-        words1 = words[x]
+import math
+import os
+import random
+import re
+import sys
 
-        x2 = (length * -1) + (i + 1)
-        words2 = words[x2:]
 
-        words = words1 + words2
-    i += 1
+def sandbox(p1, p2, arr):
     
+    arr = arr or [3,3,3]
+    length = len(arr)
+    
+    i = 0
+    result = 0
+    
+    while i < length:
+        result += arr[i]
+        i += 1
+    
+    return result
 
-print(words)
+if __name__ == '__main__':
+
+    a1 = 1
+    a2 = 2
+    array = [1,2,3]
+
+    result = sandbox(a1, a2, array)
+
+    print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

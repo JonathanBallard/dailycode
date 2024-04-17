@@ -2,10 +2,10 @@
 #~ -----------------------------------------------------------------
 
 # Name:         Jonathan Ballard
-# Date:         4.16.24
+# Date:         4.17.24
 # Site:         HackerRank
-# Section:      3 Month Prep - Week 2
-# Problem:      xxx
+# Section:      3 Month Prep - Week 3
+# Problem:      Permuting Two Arrays
 
 #~ -----------------------------------------------------------------
 

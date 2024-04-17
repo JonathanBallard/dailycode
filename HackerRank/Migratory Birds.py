@@ -2,10 +2,10 @@
 #~ -----------------------------------------------------------------
 
 # Name:         Jonathan Ballard
-# Date:         4.16.24
+# Date:         4.18.24
 # Site:         HackerRank
-# Section:      3 Month Prep - Week 2
-# Problem:      xxx
+# Section:      3 Month Prep - Week 3
+# Problem:      Migratory Birds
 
 #~ -----------------------------------------------------------------
 
