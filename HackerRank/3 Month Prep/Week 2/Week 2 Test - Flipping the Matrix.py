@@ -37,7 +37,7 @@ import sys
 # X-axis
 def flipRow(matrix):
     
-    print('newMat flipRow start: ' + str(matrix))
+    # print('newMat flipRow start: ' + str(matrix))
     
     newMat = []
     n = math.floor(len(matrix) / 2)
@@ -55,15 +55,18 @@ def flipRow(matrix):
 
             j += 1
             k -= j
+            
+            # print('sumR: ' + str(sumR) + ' sumL: ' + str(sumL))
         
         if(sumR > sumL):
+            # print('sumR larger')
             qArr = arr[::-1]
             newMat.append(qArr)        
             # print('row flip: arr=' + str(arr) + ', newMat: ' + str(newMat))
         else:
             newMat.append(arr)
     
-    print('newMat flipRow end: ' + str(matrix))
+    # print('newMat flipRow end: ' + str(matrix))
     return newMat
 
 def flipCol(newMat):
@@ -71,56 +74,66 @@ def flipCol(newMat):
     print('newMat flipCol start: ' + str(newMat))
     
     n = math.floor(len(newMat) / 2)
-    sumT = 0
-    sumB = 0
     l = 0
+    p = 0
     q = len(newMat) - 1
     i = 0
     
     returnMat = []
     
+    # for each column
     while i < len(newMat):
+        sumT = 0
+        sumB = 0
         while l < n:
             sumT += newMat[l][i]
             sumB += newMat[q][i]
+            
+            # print('sumT; newMat[l][i]: ' + str(newMat[l][i]))
+            # print('sumB; newMat[q][i]: ' + str(newMat[q][i]))
             
             l += 1
             q -= l
         
         subArr = []
+        
+        # if column needs reversing
         if(sumB > sumT):
+            # print('sumB larger')
+            
             p = 0
             t = len(newMat) - 1
             
+            # handle each element of column i
+            # while p < len(newMat) - 1:
             while p < n:
-                temp = newMat[p][i]
                 
-                newMat[p][i] = newMat[t][i]
-                newMat[t][i] = temp
-                
+                # if not first column in matrix
                 if not newMat[p][:i] == []:
                     subArr = newMat[p][:i] + [newMat[t][i]] + newMat[p][i + 1:]
+                    print('subArr notFirst: ' + str(subArr))
+                    
                 else:
                     subArr = [newMat[t][i]] + newMat[p][i + 1:]
+                    # print('[newMat[t][i]] ' + str([newMat[t][i]]))
+                    # print('newMat[p][i + 1:] ' + str(newMat[p][i + 1:]))
+                    print('subArr: ' + str(subArr))
+                returnMat.append(subArr)
                 
-                print('newMat[p][:i]: ' + str(newMat[p][:i]))
-                print('newMat[p][i]: ' + str(newMat[p][i]))
-                print('newMat[p][i + 1]: ' + str(newMat[p][i + 1:]))
-                
-                
-                # print('subArr: ' + str(subArr))
-                # returnMat.append(subArr)
                 
                 p += 1
                 t -= p
+            
+            
         else:
-            # returnMat.append(newMat[i])
+            returnMat.append(newMat[i])
             aa = 1
             
-        returnMat.append(subArr)
+        # returnMat.append(subArr)
+        print('returnMat: ' + str(returnMat))
         i += 1
     
-    print('newMat flipCol start: ' + str(returnMat))
+    # print('newMat flipCol end: ' + str(returnMat))
     return returnMat
 
 
@@ -133,8 +146,11 @@ def flippingMatrix(matrix):
     p = 0
     
     newMat = flipRow(matrix)
-    newMat = flipCol(newMat)
-    finalMat = flipRow(newMat)
+    # finalMat = flipCol(newMat)
+    
+    newMat = flipRow(newMat)
+    finalMat = flipCol(newMat)
+    print('finalMat: ' + str(finalMat))
     
     while m < n:
         p = 0
