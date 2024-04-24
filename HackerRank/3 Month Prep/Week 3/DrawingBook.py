@@ -28,21 +28,47 @@ import sys
 
 def pageCount(n, p):
     # Write your code here
+    
+    mid = int(n / 2)
+    
+    numFront = 0
+    numBack = 0
+    
+    if(n % 2 == 0):
+        n += 1
+
+    if(p <= mid):
+        i = 1
+        while i < n:
+            if(i == p or i - 1 == p):
+                return numFront
+            else:
+                numFront += 1
+                i += 2
+    elif(p > mid):
+        i = n
+        while i > 0:
+            if(i == p or i - 1 == p):
+                return numBack
+            else:
+                numBack += 1
+            i -= 2
+
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    n = int(input().strip())
 
-    p = int(input().strip())
+    p = 5   # page to turn to
 
+    n = 6   #total number of pages (last page will ALWAYS be odd)
+    
     result = pageCount(n, p)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+    
+    print(result)
 
 
+# 1,23,45
+# 1,23,45,67,89,1011
 
 
 
