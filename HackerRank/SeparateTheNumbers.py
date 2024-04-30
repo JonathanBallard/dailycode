@@ -26,67 +26,94 @@ import sys
 def separateNumbers(s):
     # Write your code here
     
-    s = str(s)
-    i = 1
-    subArr = [s[0]]
-    pNum = 0
-    iNum = 0
-    nNum = 0
-    
-    
-    if(s[0] == '0'):
-        return 'NO'
+    i = 0
+    lastVal = 0
+    currVal = 0
+    digits =  1
+    startVal = 0
+    failed = False
     
     while i < len(s):
-        ax = 0
-        compPrev = int(s[i - 1])
-        compI = int(s[i])
         
-        if(int(s[i]) == 9):
-            if(i + 2 < len(s) and int(s[i + 2]) == 0):
-                nNum = int(''.join(s[i + 1]).join('0') )
-        
-        # if '0'
         if(i < len(s) - 1):
-            compNext = int(s[i + 1])
-            if(compI == 0 and compNext == 0):
-                compPrev = int(''.join(compPrev).join('00'))
-                pNum = compPrev
-                ax = 2
-            elif(compI == 0):
-                compPrev = int(str(compPrev) + '0')
-                pNum = compPrev
-                ax = 1
-            elif(int(compNext) == 0):
-                compI = int(str(compI) + '0')
-                iNum = compI
-                ax = 1
-        elif(compI == 0):
-            compPrev = int(str(compPrev) + '0')
-            ax = 1
-        
-        if(compI - compPrev == 1):
-            subArr.append(s[i])
-        else:
-            if(len(subArr) > 1):
-                print('YES ' + str(subArr[0]))
-                return
+            # check if single digit
+            if(i == 0):
+                a1 =  int(str(s[i + 1] + str(s[i + 2])))
+                a2 = int(str(s[i + 2]) + str(s[i + 3]))
+                a3 = int(str(s[i]) + str(s[i + 1]))
+                
+                # 1 digit
+                if(int(s[i + 1]) - int(s[i]) == 1):
+                    print((s[i + 1]) + (s[i]))
+                    print('single digit startVal: ' + str(s[i]))
+                    startVal = s[i]
+                    currVal = s[i]
+                    
+                # 1 to 2 digits
+                elif(int(s[i]) == 9):
+                    
+                    if(int(a1) - 9 == 1):
+                        digits = 2
+                        currVal = 9
+                        startVal = 9
+                # 2 digits
+                elif(a2 - a3 == 1):
+                    digits = 2
+                    currVal = a3
+                    startVal = a3
+                
             else:
+                # if a multi-digit sequence that doesn't start at '0'
+                if(i < len(s) - 3):
+                    a1 = int(str(s[i]) + str(s[i + 1]))
+                    a2 = int(str(s[i + 2]) + str(s[i + 3]))
+                    if(int(s[i + 2]) == int(s[i]) and int(s[i + 3]) == int(s[i + 1]) + 1):
+                        currVal = int(str(s[i]) + str(s[i + 1]))
+                        digits = 2
+                    elif(a2 - a1 == 1):
+                        digits = 2
+                        currVal = a1
+                
+                # look for 2 digits
+                if(s[i + 1] == 0):
+                    currVal = int(str(s[i]) + '0')
+                    digits = 2
+                    print('currVal: ' + str(currVal))
+                elif(digits == 2):
+                    currVal = int(str(s[i]) + str(s[i + 1]))
+        
+        if(digits == 1):
+            if(i == s[len(s) - 1]):
+                currVal = s[len(s) - 1]
+        
+        if(lastVal == 0):
+            startVal = currVal
+        elif(lastVal > 0):
+            if not (currVal - lastVal == 1):
+                failed = True
                 print('NO')
-                return
+                return 'NO'
+                
         
-        
-        i += 1 + ax
+        lastVal = int(currVal)
+        i += digits
     
-    print('YES ' + str(subArr[0]))
-    return
+    if(failed == True):
+        print('NO')
+        return 'NO'
+    else:
+        print('YES ' + str(startVal))
+        return 'YES ' + str(startVal)
+    
 
 
 if __name__ == '__main__':
 
-    s = 10111213
+    s = '10111213'
+    s2 = '010203'
+    s3 = '1920212223'
 
-    separateNumbers(s)
+    separateNumbers(s3)
 
 
 
