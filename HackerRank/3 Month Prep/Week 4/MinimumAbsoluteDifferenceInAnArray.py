@@ -30,48 +30,24 @@ def minimumAbsoluteDifference(arr):
     arr.sort()
     
     abs = 0
-    min = 10000000
+    min = arr[len(arr) - 1]
     i = 0
-    j = 0
     
-    # length = int(len(arr) / 2)
-    length = len(arr)
     
-    # print(length)
-    
-    while i < length:
+    while i < len(arr) - 1:
         
-        if(min == 0):
+        abs = arr[i] - arr[i + 1]
+        
+        if abs < 0:
+            abs *= - 1
+            
+        if abs < min:
+            min = abs
+            
+        if min == 0:
             return 0
         
-        j = 0
-        while j < length:
-            
-            if not j == i:
-                abs = arr[i] - arr[j]
-                
-                if(abs < 0):
-                    abs *= -1
-                
-                if abs < min:
-                    min = abs
-            
-            
-            j += 1
-        
         i += 1
-    
-    # for el in arr:
-    #     for ele in arr:
-    #         if ele - el >= 0:
-    #             abs = ele - el
-    #             if abs < min:
-    #                 min = abs
-    #         elif ele - el < 0:
-    #             abs = (ele - el) * -1
-    #             if abs < min:
-    #                 min = abs
-    
     
     return min
 
