@@ -35,13 +35,7 @@ def maxMin(k, arr):
     subArr = arr[:k]
     minComp = subArr[len(subArr) - 1] - subArr[0]
     
-    rangeT = (int(len(arr) / 2)) + 15
-    if rangeT >= len(arr):
-        rangeT = (int(len(arr) / 2)) + k
-        if(rangeT > len(arr)):
-            rangeT = (int(len(arr) / 2))
-    
-    while i < (int(len(arr) * 0.7)):
+    while i < len(arr):
         subArr = arr[i:k + i]
         subArr.sort()
         min = subArr[len(subArr) - 1] - subArr[0]
@@ -49,21 +43,13 @@ def maxMin(k, arr):
         if(min < minComp and len(subArr) == k):
             minComp = min
         
-        subArr2 = arr[len(arr) - k - i:len(arr) - 1 ]
-        subArr2.sort()
+        # subArr2 = arr[len(arr) - k - i:len(arr) - 1 ]
+        # subArr2.sort()
         
-        # print(i)
-        # print(len(arr) - 1 - k - i)
-        # print(len(arr) - 1)
-        # print(subArr2)
-        # print(len(subArr2) - 1)
-        # print(subArr2[0])
-        # print('---------------------------')
+        # min = subArr2[len(subArr2) - 1] - subArr2[0]
         
-        min = subArr2[len(subArr2) - 1] - subArr2[0]
-        
-        if(min < minComp and len(subArr2) == k):
-            minComp = min
+        # if(min < minComp and len(subArr2) == k):
+        #     minComp = min
         
         
         i += 1
@@ -90,11 +76,14 @@ if __name__ == '__main__':
     
     
     
-    result = maxMin(k3, arr3)
-    result0 = maxMin(k0, arr0)
+    # result0 = maxMin(k0, arr0)
+    # print(result0)
     
+    # result3 = maxMin(k3, arr3)
+    # print(result3)
+    
+    result = maxMin(k, arr)
     print(result)
-    print(result0)
 
 
 
