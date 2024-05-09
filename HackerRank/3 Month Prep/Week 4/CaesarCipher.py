@@ -29,7 +29,6 @@ import sys
 def caesarCipher(s, k):
     # Write your code here
     
-    
     k %= 26
     
     alph = 'abcdefghijklmnopqrstuvwxyz'

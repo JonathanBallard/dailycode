@@ -5,7 +5,7 @@
 # Date:         5.8.24
 # Site:         HackerRank
 # Section:      3 Month Prep - Week 5
-# Problem:      xxx
+# Problem:      The Full Counting Sort
 
 #~ -----------------------------------------------------------------
 
